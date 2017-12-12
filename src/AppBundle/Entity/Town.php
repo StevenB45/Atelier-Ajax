@@ -8,9 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
  * town
  *
  * @ORM\Table(name="town")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\townRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\TownRepository")
  */
-class town
+class Town
 {
     /**
      * @var int
@@ -51,7 +51,7 @@ class town
      *
      * @param string $country
      *
-     * @return town
+     * @return Town
      */
     public function setCountry($country)
     {
@@ -71,11 +71,11 @@ class town
     }
 
     /**
-     * Set town
+     * Set Town
      *
      * @param string $town
      *
-     * @return town
+     * @return Town
      */
     public function setTown($town)
     {
@@ -85,7 +85,7 @@ class town
     }
 
     /**
-     * Get town
+     * Get Town
      *
      * @return string
      */
