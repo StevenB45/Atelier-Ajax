@@ -3,9 +3,12 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Town;
+use AppBundle\Repository\TownRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Town controller.
@@ -133,4 +136,26 @@ class TownController extends Controller
             ->getForm()
         ;
     }
+
+    /**
+     * @param Request $request
+     * @param $town
+     * @return JsonResponse
+     * @Route("/list/{town}", name="list-town")
+     */
+    public function autocompleteAction(Request $request, $town)
+    {
+        if ($request->isXmlHttpRequest()){
+            /**
+             * @var $repository TownRepository
+             */
+            $repository = $this->getDoctrine()->getRepository('AppBundle:Town');
+            $data = $repository->getTownLike('fr', $town);
+            return new JsonResponse(array("data" => json_encode($data)));
+        } else {
+            throw new HttpException('500', 'Invalid call');
+        }
+    }
+
+
 }

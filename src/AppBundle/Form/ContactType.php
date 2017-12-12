@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,7 +14,13 @@ class ContactType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('lastName')->add('firstName')->add('address')->add('postalCode')->add('town');
+        $builder->add('lastName')
+            ->add('firstName')
+            ->add('address')
+            ->add('postalCode')
+            ->add('town',
+                TextType::class,
+        ['attr' => ['autocomplete' => 'off']]);
     }
     
     /**

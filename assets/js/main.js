@@ -1,5 +1,7 @@
+var $ = require('jquery');
+require('bootstrap-sass');
+
 $( document ).ready(function() {
-    alert('test');
     $("#appbundle_contact_town").keyup(function(){
         var town = $(this).val();
         if ( town.length >= 2 ) {

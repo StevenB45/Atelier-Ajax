@@ -10,4 +10,16 @@ namespace AppBundle\Repository;
  */
 class TownRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getTownLike($country, $town)
+    {
+        $town = $town . "%";
+        $qb = $this->createQueryBuilder('t')
+            ->select('t.town')
+            ->where('t.country = :country')
+            ->andWhere('t.town LIKE :town')
+            ->setParameter('country', $country)
+            ->setParameter('town', $town)
+            ->getQuery();
+        return $qb->getResult();
+    }
 }

@@ -38,14 +38,14 @@ class Contact
     /**
      * @var string
      *
-     * @ORM\Column(name="address", type="text")
+     * @ORM\Column(name="address", type="string", length=255)
      */
     private $address;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="postalCode", type="integer")
+     * @ORM\Column(name="postalCode", type="string", length=5)
      */
     private $postalCode;
 
